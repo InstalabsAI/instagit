@@ -1,6 +1,6 @@
 {
   "name": "instagit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for Instagit — AI-powered Git repository analysis for coding agents",
   "author": "Instalabs, LLC",
   "license": "MIT",
@@ -44,6 +44,6 @@
   "homepage": "https://instagit.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AugmentedMind/instagit-worker"
+    "url": "https://github.com/instalabsai/instagit"
   }
 }

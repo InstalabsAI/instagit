@@ -1,0 +1,49 @@
+{
+  "name": "instagit",
+  "version": "0.1.0",
+  "description": "MCP server for Instagit — AI-powered Git repository analysis for coding agents",
+  "author": "Instalabs, LLC",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "bin": {
+    "instagit": "./bin/instagit.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --dts --clean",
+    "dev": "tsup src/index.ts --format cjs --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "eventsource-parser": "^3.0.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "git",
+    "repository",
+    "analysis",
+    "ai",
+    "claude",
+    "coding-agent",
+    "model-context-protocol"
+  ],
+  "homepage": "https://instagit.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AugmentedMind/instagit-worker"
+  }
+}

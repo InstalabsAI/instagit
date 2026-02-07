@@ -1,0 +1,8 @@
+{
+  "name": "instagit",
+  "description": "Give coding agents instant insight into any Git repository — surfacing real function signatures, parameter types, return values, and source citations with exact file paths and line numbers. No guessing, no hallucination.",
+  "version": "1.0.0",
+  "author": "InstalabsAI",
+  "tags": ["mcp", "git", "repository", "analysis", "ai", "coding-agent", "code-search", "api-discovery"],
+  "repository": "https://github.com/InstalabsAI/instagit"
+}

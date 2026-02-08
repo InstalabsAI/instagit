@@ -13,7 +13,7 @@ import type { ProgressTracker } from "./types.js";
 
 const server = new McpServer({
   name: "instagit",
-  version: "0.1.3",
+  version: "0.1.5",
 });
 
 const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase. Use cases include:

@@ -1,3 +1,5 @@
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=instagit&config=eyJjb21tYW5kIjoibnB4IC15IGluc3RhZ2l0QGxhdGVzdCJ9)
+
 # Instagit
 
 **Let Your Agents Instantly Understand the World's Code**

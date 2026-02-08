@@ -19,7 +19,7 @@ Add to your MCP client configuration:
 }
 ```
 
-Works with **Claude Code**, **Claude Desktop**, **Cursor**, and any MCP-compatible client. The `@latest` tag ensures you always get the most recent version.
+Works with **Claude Code**, **Claude Desktop**, **Cursor**, **OpenClaw**, and any MCP-compatible client. The `@latest` tag ensures you always get the most recent version.
 
 ## Why
 

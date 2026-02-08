@@ -59,19 +59,18 @@ For detailed examples across architecture, integration, debugging, migration, se
 Key patterns:
 
 ```
-repo: "stripe/stripe-node"
-prompt: "How do I create a subscription with a trial period? Show me the exact method signatures, required parameters, and error types."
+repo: "nginx/nginx"
+prompt: "How does nginx handle thousands of concurrent connections with its event-driven architecture? Walk through the event loop, worker process model, and connection state transitions."
 ```
 
 ```
-repo: "vercel/next.js"
-prompt: "Explain the architecture and main components. How does the build pipeline work from source to output?"
+repo: "hashicorp/terraform"
+prompt: "How do I implement a custom Terraform provider from scratch? What interfaces does the SDK expose, how are CRUD operations mapped to the resource lifecycle, and how does schema definition work?"
 ```
 
 ```
-repo: "mui/material-ui"
-prompt: "What changed in the Button component API between v4 and v5? List every breaking change with the old and new signatures."
-ref: "v5.0.0"
+repo: "ggml-org/llama.cpp"
+prompt: "How does llama.cpp's KV cache work during autoregressive generation? How are past key-value pairs stored, reused across tokens, and evicted when the context window fills up?"
 ```
 
 ## Configuration

@@ -62,77 +62,73 @@ Analyze any Git repository with AI.
 ### Understanding Architecture
 
 ```
-repo: "vercel/next.js"
-prompt: "Explain the architecture and main components. How does the build pipeline work from source to output?"
+repo: "nginx/nginx"
+prompt: "How does nginx handle thousands of concurrent connections with its event-driven architecture? Walk through the event loop, worker process model, and connection state transitions."
 ```
 
 ```
-repo: "facebook/react"
-prompt: "How does the fiber reconciliation algorithm work? Walk me through the key data structures and the reconciliation loop."
+repo: "meilisearch/meilisearch"
+prompt: "How does Meilisearch rank results so fast? Walk through the ranking rule pipeline — typo tolerance, proximity, attribute ranking — and where the HNSW index fits in."
 ```
 
 ### Integration and API Usage
 
 ```
-repo: "stripe/stripe-node"
-prompt: "How do I create a subscription with a trial period? Show me the exact method signatures, required parameters, and error types I need to handle."
+repo: "hashicorp/terraform"
+prompt: "How do I implement a custom Terraform provider from scratch? What interfaces does the SDK expose, how are CRUD operations mapped to the resource lifecycle, and how does schema definition work?"
 ```
 
 ```
-repo: "aws/aws-sdk-js-v3"
-prompt: "How do I configure the S3 client with custom retry logic and a regional endpoint? What are the actual constructor parameters?"
+repo: "huggingface/transformers"
+prompt: "How does HuggingFace Transformers' pipeline() auto-detect the right model, tokenizer, and default checkpoint when called with just a task name like 'sentiment-analysis'?"
 ```
 
 ### Debugging and Troubleshooting
 
 ```
-repo: "prisma/prisma"
-prompt: "How does Prisma handle connection pooling? What happens when the pool is exhausted — what error is thrown and where?"
+repo: "docker/compose"
+prompt: "How does Docker Compose resolve service dependencies and determine startup order? What happens when a service declares depends_on with a health check condition?"
 ```
 
 ```
-repo: "expressjs/express"
-prompt: "How does Express route matching work internally? When two routes could match the same path, what determines which handler runs?"
-```
-
-### Migration Planning
-
-```
-repo: "mui/material-ui"
-prompt: "What changed in the Button component API between v4 and v5? List every breaking change with the old and new signatures."
-ref: "v5.0.0"
-```
-
-```
-repo: "remix-run/react-router"
-prompt: "Compare the route configuration API between v5 and v6. What patterns were removed, renamed, or replaced?"
-ref: "main"
+repo: "openai/whisper"
+prompt: "How does Whisper detect the spoken language in multilingual audio? Walk through the language detection tokens and how the model selects the correct language before transcription begins."
 ```
 
 ### Security Review
 
 ```
-repo: "nextcloud/server"
-prompt: "Review the authentication and session management implementation. How are tokens generated, validated, and expired? Are there any obvious security concerns?"
+repo: "redis/redis"
+prompt: "Review Redis's ACL security model. How are per-user command permissions enforced on each request, and how does AUTH prevent privilege escalation?"
+```
+
+```
+repo: "auth0/node-jsonwebtoken"
+prompt: "How does jsonwebtoken's verify() prevent algorithm confusion attacks? Walk through how it validates the alg header, enforces the allowlist, and prevents key/algorithm mismatches."
 ```
 
 ### Code Quality and Evaluation
 
 ```
-repo: "fastify/fastify"
-prompt: "How does Fastify's plugin system work? How does it compare architecturally to Express middleware? What are the tradeoffs?"
+repo: "vitejs/vite"
+prompt: "How does Vite's plugin system compare architecturally to Rollup's? What are the Vite-specific hooks, and what tradeoffs does the design introduce?"
 ```
 
 ```
-repo: "drizzle-team/drizzle-orm"
-prompt: "How does Drizzle handle SQL injection prevention? Trace a query from the TypeScript API to the final SQL string."
+repo: "evanw/esbuild"
+prompt: "How does esbuild achieve such fast build speeds? What parallelism strategy does the bundler use across parsing, linking, and code generation?"
 ```
 
-### Private and Internal Repos
+### Deep Technical Analysis
 
 ```
-repo: "my-org/internal-api"
-prompt: "What endpoints are available and what are their request/response schemas? List every route handler with its HTTP method and path."
+repo: "ggml-org/llama.cpp"
+prompt: "How does llama.cpp's KV cache work during autoregressive generation? How are past key-value pairs stored, reused across tokens, and evicted when the context window fills up?"
+```
+
+```
+repo: "tinygrad/tinygrad"
+prompt: "How does tinygrad's lazy evaluation system work? When I write tensor operations, how does it build the computation graph and when does it actually execute on hardware?"
 ```
 
 ## Why Instagit
@@ -198,10 +194,6 @@ Anonymous tokens are stored in `~/.instagit/token.json` and shared with the Pyth
 - [Installation Guide](https://instagit.com/install.md): Full MCP server setup, configuration, and tool reference
 - [Privacy Policy](https://instagit.com/privacy.md): How we collect, use, and protect your information
 - [Terms of Service](https://instagit.com/terms.md): Terms governing use of the Instagit service
-
-## License
-
-MIT — Copyright (c) 2026 Instalabs, LLC
 
 ---
 

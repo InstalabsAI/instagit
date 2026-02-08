@@ -2,7 +2,7 @@
 
 # Instagit
 
-**Let Your Agents Instantly Understand the World's Code**
+**Let Your Agents Instantly Understand Any GitHub Repo**
 
 An MCP server that gives coding agents instant insight into any Git repository — no guessing, no hallucination.
 

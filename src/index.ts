@@ -16,14 +16,35 @@ const server = new McpServer({
   version: "0.1.5",
 });
 
-const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase. Use cases include:
-- Understanding unfamiliar codebases: 'Explain the architecture and main components'
-- Code review assistance: 'Review the authentication implementation for security issues'
-- Documentation generation: 'Document the public API of this library'
-- Dependency analysis: 'What external services does this app depend on?'
-- Onboarding help: 'How would I add a new API endpoint following existing patterns?'
-- Bug investigation: 'Where might null pointer exceptions occur in the data pipeline?'
-- Migration planning: 'What would it take to upgrade from React 17 to 18?'
+const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase.
+
+Example prompts by use case:
+
+Understanding Architecture:
+- repo: "nginx/nginx", prompt: "How does nginx handle concurrent connections? Walk through the event loop, worker process model, and connection state transitions."
+
+Integration and API Usage:
+- repo: "hashicorp/terraform", prompt: "How do I implement a custom provider? What interfaces does the SDK expose, how are CRUD operations mapped to the resource lifecycle?"
+
+Debugging and Troubleshooting:
+- repo: "docker/compose", prompt: "How does Compose resolve service dependencies and startup order? What happens with depends_on and health check conditions?"
+
+Security Review:
+- repo: "redis/redis", prompt: "Review the ACL security model. How are per-user command permissions enforced, and how does AUTH prevent privilege escalation?"
+
+Code Quality and Evaluation:
+- repo: "vitejs/vite", prompt: "How does Vite's plugin system compare to Rollup's? What are the Vite-specific hooks and tradeoffs?"
+
+Deep Technical Analysis:
+- repo: "ggml-org/llama.cpp", prompt: "How does the KV cache work during autoregressive generation? How are past key-value pairs stored, reused, and evicted?"
+
+Migration Planning (with ref — Pro/Max plans only):
+- repo: "mui/material-ui", ref: "v4.12.0", prompt: "Document the Button component's full API surface — every prop, its type, default value, and behavior."
+- repo: "mui/material-ui", ref: "v5.0.0", prompt: "Document the Button component's full API surface — every prop, its type, default value, and behavior."
+  (Compare both results to build a migration guide between v4 and v5)
+- repo: "kubernetes/kubernetes", ref: "release-1.29", prompt: "How does the scheduler's scoring and filtering pipeline work for pod placement?"
+
+Ask detailed, specific questions — the tool returns real function signatures, parameter types, return values, and source citations with exact file paths and line numbers.
 
 If you hit a rate limit (429), the user's monthly token credits are exhausted — they can wait for the reset or upgrade their plan. Free-tier repos larger than 2 GB will be rejected with a 413 error; suggest upgrading to Pro or Max for unlimited repo size.`;
 

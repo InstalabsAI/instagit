@@ -1,0 +1,8 @@
+{
+  "name": "analyze-git-repo",
+  "description": "Analyze any Git repository in depth — understand architecture, debug across repo boundaries, review APIs, plan migrations, and get source citations with exact file paths and line numbers. Powered by Instagit.",
+  "version": "1.0.0",
+  "author": "InstalabsAI",
+  "tags": ["mcp", "git", "repository", "analysis", "ai", "coding-agent", "code-search", "api-discovery"],
+  "repository": "https://github.com/InstalabsAI/instagit"
+}

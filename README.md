@@ -85,7 +85,6 @@ Analyze any Git repository with AI.
 | `repo` | string | yes | Repository URL, shorthand (`owner/repo`), or any public Git URL |
 | `prompt` | string | yes | What to analyze or ask about the codebase |
 | `ref` | string | no | Branch, commit SHA, or tag (default: repository's default branch) |
-| `fast` | boolean | no | Use fast mode for quicker responses (default: true) |
 
 **Example prompts:**
 - "Explain the architecture and main components"

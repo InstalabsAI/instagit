@@ -1,11 +1,11 @@
 ---
-name: instagit
-description: "MCP server that gives coding agents instant insight into any Git repository. Use when an agent needs to understand, analyze, or query any GitHub repository — surfacing real function signatures, parameter types, return values, and source citations with exact file paths and line numbers. Eliminates hallucinated APIs by grounding agents in the actual codebase. Triggers when: (1) setting up Instagit MCP server, (2) querying or analyzing a remote Git repository, (3) understanding library APIs or architecture from source, (4) debugging across repository boundaries, (5) evaluating or comparing libraries, (6) planning migrations between versions."
+name: analyze-git-repo
+description: "Analyze any Git repository in depth — understand architecture, debug across repo boundaries, review APIs, plan migrations, and evaluate libraries. Surfaces real function signatures, parameter types, return values, and source citations with exact file paths and line numbers. Eliminates hallucinated APIs by grounding agents in the actual codebase. Powered by Instagit. Triggers when: (1) querying or analyzing a remote Git repository, (2) understanding library APIs or architecture from source, (3) debugging across repository boundaries, (4) evaluating or comparing libraries, (5) planning migrations between versions, (6) setting up the Instagit MCP server."
 ---
 
-# Instagit
+# Analyze Git Repo
 
-Give coding agents instant insight into any Git repository — no guessing, no hallucination.
+Analyze any Git repository in depth — understand architecture, surface real APIs, debug across repo boundaries, and get source citations with exact file paths and line numbers. Powered by [Instagit](https://instagit.com).
 
 ## Quick Start
 
@@ -51,7 +51,6 @@ Analyze any Git repository with AI.
 | `repo`    | string   | yes      | Repository URL, shorthand (`owner/repo`), or any public Git URL |
 | `prompt`  | string   | yes      | What to analyze or ask about the codebase                      |
 | `ref`     | string   | no       | Branch, commit SHA, or tag (default: repo's default branch)    |
-| `fast`    | boolean  | no       | Use fast mode for quicker responses (default: true)            |
 
 ## Prompting Examples
 
@@ -86,7 +85,7 @@ Anonymous tokens stored in `~/.instagit/token.json`.
 
 ## Pricing
 
-- **FREE:** $0 forever — 2M tokens/mo, standard speed, public repos (up to 200 MB)
+- **FREE:** $0 forever — 2M tokens/mo, standard speed, public repos (up to 2 GB)
 - **PRO:** $20/mo — 20M tokens/mo, fast mode, all public repos, unlimited repo size
 - **MAX:** $200/mo — 40M tokens/mo, fast mode, reasoning model, all features
 - **Enterprise:** Custom limits, dedicated support, SSO, SLA, private deployment

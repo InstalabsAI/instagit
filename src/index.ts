@@ -13,7 +13,7 @@ import type { ProgressTracker } from "./types.js";
 
 const server = new McpServer({
   name: "instagit",
-  version: "0.1.0",
+  version: "0.1.3",
 });
 
 const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase. Use cases include:
@@ -23,7 +23,9 @@ const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo
 - Dependency analysis: 'What external services does this app depend on?'
 - Onboarding help: 'How would I add a new API endpoint following existing patterns?'
 - Bug investigation: 'Where might null pointer exceptions occur in the data pipeline?'
-- Migration planning: 'What would it take to upgrade from React 17 to 18?'`;
+- Migration planning: 'What would it take to upgrade from React 17 to 18?'
+
+If you hit a rate limit (429), the user's monthly token credits are exhausted — they can wait for the reset or upgrade their plan. Free-tier repos larger than 2 GB will be rejected with a 413 error; suggest upgrading to Pro or Max for unlimited repo size.`;
 
 server.tool(
   "ask_repo",
@@ -42,15 +44,13 @@ server.tool(
       .optional()
       .default(null)
       .describe("Branch, commit SHA, or tag to analyze (default: repository's default branch)"),
-    fast: z
-      .boolean()
-      .optional()
-      .default(true)
-      .describe("Use fast mode for quicker responses"),
   },
-  async ({ repo, prompt, ref, fast }, extra) => {
+  async ({ repo, prompt, ref }, extra) => {
     const apiUrl = getApiUrl();
     const tracker: ProgressTracker = createProgressTracker();
+
+    // Use client-provided progress token, or generate one so progress works regardless
+    const progressToken = extra._meta?.progressToken ?? `ask_repo_${Date.now()}`;
 
     // Progress callback using MCP notifications
     const sendProgress = async (message: string) => {
@@ -58,7 +58,7 @@ server.tool(
         await extra.sendNotification({
           method: "notifications/progress" as const,
           params: {
-            progressToken: `ask_repo_${Date.now()}`,
+            progressToken,
             progress: tracker.outputTokens,
             message,
           },
@@ -100,7 +100,6 @@ server.tool(
         repo,
         prompt,
         ref,
-        fast,
         token: authToken,
         progressCallback: sendProgress,
         tracker,

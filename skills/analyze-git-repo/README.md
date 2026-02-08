@@ -1,15 +1,15 @@
-# Instagit
+# Analyze Git Repo
 
-**Let Your Agent Instantly Understand the World's Code**
+**Analyze Any Git Repository in Depth**
 
-An MCP server that gives coding agents instant insight into any Git repository — no guessing, no hallucination.
+Understand architecture, surface real APIs, debug across repo boundaries, plan migrations, and evaluate libraries — all grounded in the actual source code with exact file paths and line numbers. No guessing, no hallucination.
 
-Instagit lets coding agents understand any GitHub repository by surfacing real function signatures, parameter types, return values, and source citations with exact file paths and line numbers. It eliminates hallucinated APIs by grounding agents in the actual codebase rather than outdated docs or stale training data. Works with Claude Code, Claude Desktop, Cursor, VS Code, and any MCP-compatible client.
+Works with Claude Code, Claude Desktop, Cursor, VS Code, and any MCP-compatible client. Powered by [Instagit](https://instagit.com).
 
 ## Installation
 
 ```bash
-npx skills add InstalabsAI/instagit --skill instagit
+npx skills add InstalabsAI/instagit --skill analyze-git-repo
 ```
 
 ## Quick Start
@@ -56,7 +56,6 @@ Analyze any Git repository with AI.
 | `repo` | string | yes | Repository URL, shorthand (`owner/repo`), or any public Git URL |
 | `prompt` | string | yes | What to analyze or ask about the codebase |
 | `ref` | string | no | Branch, commit SHA, or tag (default: repository's default branch) |
-| `fast` | boolean | no | Use fast mode for quicker responses (default: true) |
 
 ## Prompting Examples
 
@@ -188,7 +187,7 @@ Anonymous tokens are stored in `~/.instagit/token.json` and shared with the Pyth
 
 ## Pricing
 
-- **FREE:** $0 forever, 2M tokens/mo, standard speed, public repos (up to 200 MB)
+- **FREE:** $0 forever, 2M tokens/mo, standard speed, public repos (up to 2 GB)
 - **PRO:** $20/mo, 20M tokens/mo, fast mode, all public repos, unlimited repo size, private repos (coming soon), zero data training
 - **MAX:** $200/mo, 40M tokens/mo, fast mode, most intelligent (reasoning) model, all public repos, unlimited repo size, all features
 - **Enterprise:** Custom token limits, dedicated support, SSO, SLA guarantees, private deployment options

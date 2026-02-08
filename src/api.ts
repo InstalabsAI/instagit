@@ -17,12 +17,10 @@ export function getApiUrl(): string {
  * Build the model string for the API request.
  * The API encodes repo info in the model field:
  * - owner/repo or full URL
- * - :fast suffix for fast mode
  * - @ref suffix for branch/tag/commit
  */
-function buildModelString(repo: string, ref: string | null, fast: boolean): string {
+function buildModelString(repo: string, ref: string | null): string {
   let model = repo;
-  if (fast) model += ":fast";
   if (ref) model += `@${ref}`;
   return model;
 }
@@ -31,7 +29,6 @@ export interface StreamOptions {
   repo: string;
   prompt: string;
   ref?: string | null;
-  fast?: boolean;
   token?: string | null;
   progressCallback?: (message: string) => Promise<void>;
   tracker?: ProgressTracker;
@@ -42,14 +39,13 @@ export async function analyzeRepoStreaming(opts: StreamOptions): Promise<Analysi
     repo,
     prompt,
     ref = null,
-    fast = true,
     token = null,
     progressCallback,
   } = opts;
   const tracker = opts.tracker ?? createProgressTracker();
 
   const apiUrl = getApiUrl();
-  const model = buildModelString(repo, ref, fast);
+  const model = buildModelString(repo, ref);
 
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) {

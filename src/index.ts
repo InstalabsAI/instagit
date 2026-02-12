@@ -13,7 +13,7 @@ import type { ProgressTracker } from "./types.js";
 
 const server = new McpServer({
   name: "instagit",
-  version: "0.1.5",
+  version: "0.1.7",
 });
 
 const TOOL_DESCRIPTION = `Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase.
@@ -104,7 +104,7 @@ server.tool(
                 "Unable to register anonymous token. " +
                 "This may be because you've reached the limit of 3 tokens per IP address.\n\n" +
                 "To continue using Instagit:\n" +
-                "1. Sign up for a free account at https://instagit.ai/signup\n" +
+                "1. Sign up for a free account at https://app.instagit.com/signup\n" +
                 "2. Get an API key from your dashboard\n" +
                 "3. Set INSTAGIT_API_KEY in your MCP configuration",
             },
@@ -164,14 +164,28 @@ server.tool(
                 `Rate limit exceeded. Your free credits have been exhausted.\n${resetInfo}\n` +
                 "To continue using Instagit immediately:\n" +
                 "- Upgrade to Pro ($20/mo) for 10x more credits and faster analysis\n" +
-                "- Visit: https://instagit.ai/pricing",
+                "- Visit: https://app.instagit.com/pricing",
             },
           ],
         };
       }
 
-      // Handle auth errors (401) — retry with fresh token
+      // Handle auth errors (401) — retry with fresh token only for anonymous tokens
       if (error.status === 401) {
+        // If the user set an API key, don't discard it — report the failure directly
+        if (process.env.INSTAGIT_API_KEY) {
+          return {
+            content: [
+              {
+                type: "text" as const,
+                text:
+                  "Authentication failed (401). Your INSTAGIT_API_KEY was rejected.\n\n" +
+                  "Please verify your API key is correct and active at https://app.instagit.com/dashboard",
+              },
+            ],
+          };
+        }
+
         clearStoredToken();
         const newToken = await registerAnonymousToken(apiUrl);
         if (newToken) {
@@ -196,7 +210,7 @@ server.tool(
                 text:
                   "Authentication failed. Unable to register a new token.\n\n" +
                   "Please set INSTAGIT_API_KEY in your MCP configuration, " +
-                  "or visit https://instagit.ai/signup to create an account.",
+                  "or visit https://app.instagit.com/signup to create an account.",
               },
             ],
           };

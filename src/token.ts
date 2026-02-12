@@ -7,6 +7,14 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "
 import { join } from "path";
 import { homedir } from "os";
 import { getMachineFingerprint } from "./fingerprint.js";
+import {
+  RETRYABLE_STATUS_CODES,
+  MAX_RETRIES,
+  FETCH_TIMEOUT,
+  sleep,
+  isTransportError,
+  getRetryDelay,
+} from "./retry.js";
 
 const CONFIG_DIR = join(homedir(), ".instagit");
 const TOKEN_FILE = join(CONFIG_DIR, "token.json");
@@ -50,25 +58,45 @@ export function getOrCreateToken(): string | null {
  * Register a new anonymous token with the API.
  */
 export async function registerAnonymousToken(apiUrl: string): Promise<string | null> {
-  try {
-    const fingerprint = getMachineFingerprint();
-    const response = await fetch(`${apiUrl}/v1/auth/anonymous`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fingerprint }),
-    });
+  const fingerprint = getMachineFingerprint();
 
-    if (response.ok) {
-      const data = (await response.json()) as { token?: string };
-      const token = data.token;
-      if (token) {
-        storeToken(token);
-        return token;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(`${apiUrl}/v1/auth/anonymous`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fingerprint }),
+        signal: AbortSignal.timeout(FETCH_TIMEOUT),
+      });
+
+      if (response.ok) {
+        const data = (await response.json()) as { token?: string };
+        const token = data.token;
+        if (token) {
+          storeToken(token);
+          return token;
+        }
       }
+
+      // Retryable HTTP status
+      if (RETRYABLE_STATUS_CODES.has(response.status)) {
+        await response.text().catch(() => ""); // drain body
+        if (attempt < MAX_RETRIES) {
+          await sleep(getRetryDelay(attempt));
+          continue;
+        }
+      }
+
+      // Non-retryable error (e.g. 429 IP limit)
+      return null;
+    } catch (error: unknown) {
+      if (isTransportError(error) && attempt < MAX_RETRIES) {
+        await sleep(getRetryDelay(attempt));
+        continue;
+      }
+      return null;
     }
-    // 429 = IP limit reached, or other error
-    return null;
-  } catch {
-    return null;
   }
+
+  return null;
 }

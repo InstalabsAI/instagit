@@ -1,6 +1,6 @@
 {
   "name": "instagit",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "mcpName": "io.github.instagitai/instagit",
   "description": "MCP server for Instagit — AI-powered Git repository analysis for coding agents",
   "author": "Instalabs, LLC",

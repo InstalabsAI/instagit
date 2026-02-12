@@ -1,4 +1,4 @@
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=instagit&config=eyJjb21tYW5kIjoibnB4IC15IGluc3RhZ2l0QGxhdGVzdCJ9)
+[![Ask Instagit](https://instagit.com/badge.svg)](https://instagit.com/InstalabsAI/instagit)
 
 # Instagit
 
@@ -20,6 +20,7 @@ Add to your MCP client configuration:
   }
 }
 ```
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=instagit&config=eyJjb21tYW5kIjoibnB4IC15IGluc3RhZ2l0QGxhdGVzdCJ9)
 
 Works with **Claude Code**, **Claude Desktop**, **Cursor**, **OpenClaw**, and any MCP-compatible client. The `@latest` tag ensures you always get the most recent version.
 

@@ -8,6 +8,16 @@ An MCP server that gives coding agents instant insight into any Git repository â
 
 ## Quick Start
 
+### Agentic Install
+
+Share the following with your agent to get started:
+
+```
+curl -s https://instagit.com/install.md
+```
+
+### Manual Install
+
 Add to your MCP client configuration:
 
 ```json
